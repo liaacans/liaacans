@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untuk Kamu ❤️</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            color: #d23669;
+        }
+
+        .container {
+            text-align: center;
+            max-width: 600px;
+            padding: 30px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .heart {
+            position: absolute;
+            pointer-events: none;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.6);
+        }
+
+        .btn:active {
+            transform: translateY(1px);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        #message {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-top: 20px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Untuk Kamu ❤️</h1>
+        <p>Hai sayangku, aku cuma ingin bilang...</p>
+        <p>Kamu itu spesial banget buat aku. Terima kasih sudah ada di hidupku.</p>
+        
+        <div id="initial-content">
+            <button class="btn" id="love-btn">Klik kalau kamu sayang aku!</button>
+        </div>
+        
+        <div id="hidden-content" class="hidden">
+            <p id="message">Aku sayang banget sama kamu! ❤️❤️❤️</p>
+            <button class="btn" id="surprise-btn">Klik untuk kejutan!</button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const loveBtn = document.getElementById('love-btn');
+            const surpriseBtn = document.getElementById('surprise-btn');
+            const initialContent = document.getElementById('initial-content');
+            const hiddenContent = document.getElementById('hidden-content');
+            
+            // Efek hujan hati saat halaman dimuat
+            createHearts();
+            
+            loveBtn.addEventListener('click', function() {
+                // Animasi tombol
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 100);
+                
+                // Tampilkan SweetAlert
+                Swal.fire({
+                    title: 'Aku Juga Sayang Kamu!',
+                    text: 'Kamu bikin hari-hariku lebih berwarna ❤️',
+                    imageUrl: 'https://i.top4top.io/p_3428gyd0e4.gif',
+                    imageWidth: 200,
+                    imageHeight: 200,
+                    imageAlt: 'Heart',
+                    background: '#fff5f5',
+                    confirmButtonColor: '#ff6b6b',
+                });
+                
+                // Tampilkan konten tersembunyi
+                initialContent.classList.add('hidden');
+                hiddenContent.classList.remove('hidden');
+                
+                // Tambah lebih banyak hati
+                for (let i = 0; i < 30; i++) {
+                    setTimeout(createHeart, i * 100);
+                }
+            });
+            
+            surpriseBtn.addEventListener('click', function() {
+                // Animasi tombol
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 100);
+                
+                // Tampilkan SweetAlert dengan efek lebih keren
+                Swal.fire({
+                    title: 'Untuk Kamu Sayang...',
+                    html: '<p>Setiap hari bersamamu adalah anugerah yang aku syukuri.</p><p>Aku berjanji akan selalu menyayangimu sepenuh hati.</p>',
+                    imageUrl: 'https://media.giphy.com/media/XbxZ41fWLeRECPsGIJ/giphy.gif',
+                    imageWidth: 300,
+                    imageHeight: 200,
+                    background: '#fff5f5',
+                    showConfirmButton: true,
+                    confirmButtonColor: '#ff6b6b',
+                    showCancelButton: true,
+                    cancelButtonText: 'Tutup',
+                    cancelButtonColor: '#ddd',
+                    footer: '<i>Dibuat dengan cinta ❤️</i>'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire({
+                            title: 'I Love You!',
+                            text: 'Kamu yang terbaik!',
+                            icon: 'success',
+                            confirmButtonColor: '#ff6b6b'
+                        });
+                    }
+                });
+                
+                // Ledakan hati
+                for (let i = 0; i < 100; i++) {
+                    setTimeout(createHeart, i * 50);
+                }
+            });
+            
+            // Fungsi untuk membuat hati
+            function createHeart() {
+                const heart = document.createElement('div');
+                heart.innerHTML = '❤️', '💋';
+                heart.classList.add('heart');
+                
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.top = Math.random() * 100 + 'vh';
+                heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+                heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                
+                document.body.appendChild(heart);
+                
+                // Hapus elemen setelah animasi selesai
+                setTimeout(() => {
+                    heart.remove();
+                }, 5000);
+            }
+            
+            // Fungsi untuk membuat banyak hati (hujan hati)
+            function createHearts() {
+                for (let i = 0; i < 20; i++) {
+                    setTimeout(createHeart, i * 300);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
